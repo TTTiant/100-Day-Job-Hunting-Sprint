@@ -1,13 +1,7 @@
 import java.util.*;
 // 根据前序遍历和中序遍历建立二叉树，再找出二叉树的右视图。
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-}
 
-public class Solution {
+public class BinaryTreeRightSightView {
     public int[] solve(int[] preOrder, int[] inOrder) {
         // write code here
         TreeNode root = buildTree(preOrder, inOrder);
@@ -50,9 +44,10 @@ public class Solution {
             return null;
         }
 
-        int rootVal = preList[preStart];
+        int rootVal = preList[preStart];     // 先序遍历的第一个是二叉树的root
         TreeNode root = new TreeNode(rootVal);
-        int inIndex = 0;
+
+        int inIndex = 0;     // 找到root的下标索引
 
         for (int i = inStart; i <= inEnd; i++) {
             if (inList[i] == rootVal) {
@@ -87,7 +82,7 @@ public class Solution {
         }
 
         // 调用solve方法
-        Solution solution = new Solution();
+        BinaryTreeRightSightView solution = new BinaryTreeRightSightView();
         int[] result = solution.solve(preOrder, inOrder);
 
         // 输出结果
