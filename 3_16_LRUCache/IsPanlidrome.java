@@ -1,5 +1,5 @@
 public class IsPanlidrome {
-    //回文数
+    //回文数 (不是回文字符串)
     public boolean isPalindrome(int x) {
         if(x < 0 ||(x % 10 == 0 && x != 0)){
             return false;
