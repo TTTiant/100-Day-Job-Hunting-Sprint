@@ -110,7 +110,71 @@ Set：无序，不可重复，最多**允许一个Null**元素。
    转移元素到数组中时候，将原数组分组，不同的线程来进行元素的转移，
    每个线程负责一组或多组元素转移工作。
 
-### CopyOnWriteArrayList的底层原理
+
+
+## Spring 
+### 单例Bean和单例模式
+
+#### 单例模式 (Singleton Pattern)
+
+单例模式是一种常见的设计模式，它确保一个类**只有一个实例**，并提供一个**全局访问点**。
+
+##### 单例模式特点：
+1. 一个类只能有一个实例
+2. 必须自行创建这个实例
+3. 必须向整个系统提供这个实例
+
+##### Java实现示例：
+```java
+public class Singleton {
+    // 私有静态实例
+    private static Singleton instance;
+    
+    // 私有构造函数防止外部实例化
+    private Singleton() {}
+    
+    // 全局访问点
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+```
+
+#### 单例Bean (Singleton Bean)
+
+单例Bean是Spring框架中的概念，指在Spring IoC容器中**每个Bean定义只对应一个对象实例**。
+
+#### 单例Bean特点：
+1. 由Spring容器管理生命周期
+2. 默认作用域就是单例
+3. 所有对该Bean的请求都返回同一个实例
+4. 存储在Spring容器的缓存中
+
+#### 配置示例：
+```xml
+<bean id="exampleBean" class="com.example.ExampleBean" scope="singleton"/>
+```
+或使用注解：
+```java
+@Component
+@Scope("singleton")
+public class ExampleBean {}
+```
+
+### 主要区别
+
+| 对比项  | 单例模式 | 单例Bean |
+|------|----------|----------|
+| 控制方  | 代码控制 | Spring容器控制 |
+| 生命周期 | JVM控制 | Spring容器管理 |
+| 线程安全 | 需自行处理 | 通常无状态，线程安全 |
+| 灵活性  | 较固定 | 可通过配置改变作用域 |
+| 使用场景 | 通用设计 | Spring应用上下文 |
+
+
 
 
 
